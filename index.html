@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="強い文字、静かな余白、モノクロームの写真で構成したエディトリアルウェブサイト。">
+  <meta name="theme-color" content="#f3f3f0">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="すごいWEB">
+  <meta property="og:description" content="強い文字と静かな余白で、すごいを編集するウェブサイト。">
+  <meta property="og:image" content="assets/og-image.jpg">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <title>すごいWEB｜モノクローム・エディトリアル</title>
+  <link rel="stylesheet" href="styles.css?v=2">
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ移動</a>
+
+  <header class="hero" id="top">
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="メニューを開く" aria-controls="siteMenu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="menu-scrim" id="menuScrim" hidden></div>
+    <nav class="site-menu" id="siteMenu" aria-label="メインメニュー" aria-hidden="true">
+      <p class="menu-label">CONTENTS</p>
+      <a href="#top">トップ</a>
+      <a href="#feature01">特集 01</a>
+      <a href="#feature02">特集 02</a>
+      <a href="#gallery">ギャラリー</a>
+      <a href="#video">映像</a>
+      <p class="menu-note">静かに、強く、すごく。</p>
+    </nav>
+    <h1><span>すごい</span><strong>WEB</strong></h1>
+    <p>— すごいものを、すごいまま届ける —</p>
+  </header>
+
+  <main id="main">
+    <section class="slider" aria-roledescription="カルーセル" aria-label="注目の写真">
+      <div class="slider-viewport" tabindex="0">
+        <div class="slides">
+          <article class="slide" data-title="静かな余白も、すごい">
+            <img src="assets/image-01.jpg" alt="縦の面が重なる抽象的なモノクローム風景" width="1600" height="900">
+            <span>静かな余白も、すごい</span>
+          </article>
+          <article class="slide" data-title="超スーパーすごい写真">
+            <img src="assets/image-02.jpg" alt="円形が浮かぶ抽象的なモノクローム作品" width="1600" height="900">
+            <span>うんと凄くて<br>超スーパーすごい写真</span>
+          </article>
+          <article class="slide" data-title="ジワジワくる、すごい">
+            <img src="assets/image-03.jpg" alt="山並みのような形が重なるモノクローム作品" width="1600" height="900">
+            <span>ジワジワくる、すごい</span>
+          </article>
+          <article class="slide" data-title="圧倒的に、すごい景色">
+            <img src="assets/image-04.jpg" alt="斜めの光が走る建築的なモノクローム作品" width="1600" height="900">
+            <span>圧倒的に、すごい景色</span>
+          </article>
+          <article class="slide" data-title="どこまでも、すごい">
+            <img src="assets/image-05.jpg" alt="水平線が交差する抽象的なモノクローム作品" width="1600" height="900">
+            <span>どこまでも、すごい</span>
+          </article>
+        </div>
+      </div>
+      <button class="slider-btn prev" type="button" aria-label="前の写真"><span aria-hidden="true">←</span></button>
+      <button class="slider-btn next" type="button" aria-label="次の写真"><span aria-hidden="true">→</span></button>
+      <div class="slider-meta" aria-live="polite">
+        <span class="slide-number">01 / 05</span>
+        <div class="slider-dots" aria-label="写真を選択"></div>
+      </div>
+      <button class="autoplay-toggle" type="button" aria-pressed="false">一時停止</button>
+    </section>
+
+    <div class="content-shell">
+      <section class="feature split" id="feature01">
+        <figure class="media-frame portrait"><img src="assets/image-06.jpg" alt="丸みのある形が並ぶ抽象作品" loading="lazy" width="1600" height="900"></figure>
+        <div class="copy">
+          <p class="eyebrow">FEATURE 01</p>
+          <h2>グッとなって、ギュッと残る。<br>余白から始まる記事。</h2>
+          <p>目立たせるだけでは、印象は長く残りません。強い見出しのまわりに静かな空間をつくり、読む速度そのものをデザインします。</p>
+        </div>
+      </section>
+
+      <hr>
+
+      <figure class="wide-media media-frame"><img src="assets/image-07.jpg" alt="暗い背景に明るい楕円が並ぶ抽象作品" loading="lazy" width="1600" height="900"><figcaption>かたちが揃うと、視線も揃う。</figcaption></figure>
+
+      <section class="two-columns text-columns" aria-label="デザインの特徴">
+        <article><p class="eyebrow">RHYTHM</p><h3>大きな面と小さな言葉を交互に置く</h3><p>情報量の波をつくり、長いページでも疲れずに読み進められる構成にしています。</p></article>
+        <article><p class="eyebrow">CONTRAST</p><h3>黒、白、グレーだけで奥行きをつくる</h3><p>色に頼らず、明度差、写真の密度、文字の太さで優先順位を明確にします。</p></article>
+      </section>
+
+      <hr>
+
+      <section class="feature split" id="feature02">
+        <figure class="media-frame portrait"><img src="assets/image-08.jpg" alt="曲線と暗い面が組み合わさった抽象作品" loading="lazy" width="1600" height="900"></figure>
+        <div class="copy">
+          <p class="eyebrow">FEATURE 02</p>
+          <h2>猛烈に強く、けれど静かに。<br>写真と文章が引き立て合う。</h2>
+          <p>写真は飾りではなく、文章の呼吸を変える装置です。画面の中に暗い面を置くことで、次の白い余白がより明るく見えます。</p>
+        </div>
+      </section>
+
+      <hr>
+
+      <section class="card-grid three" id="gallery" aria-labelledby="galleryTitle">
+        <h2 class="visually-hidden" id="galleryTitle">ギャラリー</h2>
+        <article><figure class="media-frame"><img src="assets/image-09.jpg" alt="四角形が重なるモノクローム作品" loading="lazy" width="1600" height="900"></figure><h3>整列することで生まれる強さ</h3><p>同じ規則を反復すると、わずかな違いが鮮明になります。</p></article>
+        <article><figure class="media-frame"><img src="assets/image-10.jpg" alt="暗い面を斜線が横切るモノクローム作品" loading="lazy" width="1600" height="900"></figure><h3>斜めの線がつくる速度</h3><p>静かな誌面の中に、ひとつだけ動きの方向を加えます。</p></article>
+        <article><figure class="media-frame"><img src="assets/image-11.jpg" alt="縦長の面が並ぶ抽象的なモノクローム作品" loading="lazy" width="1600" height="900"></figure><h3>余白を残して、見せ切らない</h3><p>すべてを説明せず、見る人が補うための空間を残します。</p></article>
+      </section>
+
+      <hr>
+
+      <section class="map-block" aria-label="構成の考え方">
+        <figure class="map-visual media-frame"><img src="assets/image-12.jpg" alt="円形と暗い地面が構成された抽象作品" loading="lazy" width="1600" height="900"><figcaption>情報を地図のように組み立てる</figcaption></figure>
+        <div class="map-links">
+          <article><span>01</span><h3>入口をひとつに絞る</h3><p>最初に見る要素を明確にすると、迷わず次へ進めます。</p></article>
+          <article><span>02</span><h3>文章の長さに差をつける</h3><p>短い見出しと落ち着いた本文で、読み方にリズムをつくります。</p></article>
+          <article><span>03</span><h3>終わりに余韻を置く</h3><p>映像と暗いフッターで、ページ全体を静かに閉じます。</p></article>
+        </div>
+      </section>
+
+      <section class="statement">
+        <p class="eyebrow">EDITORIAL NOTE</p>
+        <blockquote>「すごい」は、派手さではなく、<br>見たあとに残る密度のこと。</blockquote>
+      </section>
+
+      <hr>
+
+      <section class="video" id="video" aria-labelledby="videoHeading">
+        <div class="section-head"><p class="eyebrow">MOVIE</p><h2 id="videoHeading">動きで見る、すごいWEB</h2></div>
+        <button class="video-box" id="videoButton" type="button" aria-haspopup="dialog" aria-controls="modal">
+          <img src="assets/image-04.jpg" alt="">
+          <span>すごい<br>動画</span>
+          <i aria-hidden="true">▶</i>
+          <b>00:08</b>
+        </button>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand"><strong>すごいWEB</strong><p>強い文字と静かな余白で、ものごとの魅力を編集する。</p></div>
+      <div class="footer-links"><a href="#feature01">特集</a><a href="#gallery">ギャラリー</a><a href="#video">映像</a><a href="#top">ページ上部へ</a></div>
+    </div>
+    <p class="copyright">© 2026 SUGOI WEB</p>
+  </footer>
+
+  <div class="modal" id="modal" aria-hidden="true" hidden>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-head"><h2 id="modalTitle">すごい動画</h2><button class="modal-close" id="modalClose" type="button" aria-label="動画を閉じる">×</button></div>
+      <video id="featureVideo" controls preload="metadata" poster="assets/image-04.jpg">
+        <source src="assets/sugoi-film.mp4" type="video/mp4">
+        お使いのブラウザは動画再生に対応していません。
+      </video>
+      <p>モノクロームの図形が切り替わる、8秒間の短い映像です。</p>
+    </div>
+  </div>
+
+  <script src="script.js?v=2"></script>
+</body>
+</html>
