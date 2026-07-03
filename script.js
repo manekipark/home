@@ -158,3 +158,109 @@ document.addEventListener('keydown', e => {
     else if (siteMenu.classList.contains('open')) setMenu(false);
   }
 });
+
+const mediaList = document.getElementById('mediaList');
+const mediaSheetUrl = 'https://docs.google.com/spreadsheets/d/1VJgPLSTKU752g4j9_PXB-sji7XwLDwqwxiMGPQvQ9jk/gviz/tq?tqx=out:csv';
+
+function parseCsv(text) {
+  const rows = [];
+  let row = [];
+  let value = '';
+  let quoted = false;
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+    const next = text[i + 1];
+    if (quoted) {
+      if (char === '"' && next === '"') { value += '"'; i++; }
+      else if (char === '"') quoted = false;
+      else value += char;
+    } else if (char === '"') quoted = true;
+    else if (char === ',') { row.push(value); value = ''; }
+    else if (char === '\n') {
+      row.push(value);
+      rows.push(row);
+      row = [];
+      value = '';
+    } else if (char !== '\r') value += char;
+  }
+  row.push(value);
+  rows.push(row);
+  return rows.filter(items => items.some(item => item.trim()));
+}
+
+function pick(row, names) {
+  for (const name of names) {
+    const value = row[name];
+    if (value) return value.trim();
+  }
+  return '';
+}
+
+function normalizeMediaRows(rows) {
+  const headers = rows.shift()?.map(header => header.trim()) || [];
+  return rows.map(values => {
+    const row = {};
+    headers.forEach((header, index) => { row[header] = values[index] || ''; });
+    return {
+      date: pick(row, ['日付', '掲載日', '公開日', 'Date']),
+      source: pick(row, ['媒体', 'メディア', '掲載媒体', 'Media']),
+      title: pick(row, ['タイトル', '記事名', '見出し', 'Title']),
+      url: pick(row, ['URL', 'リンク', 'Link']),
+      description: pick(row, ['概要', '説明', '内容', 'Description'])
+    };
+  }).filter(item => item.title || item.source || item.description);
+}
+
+function renderMediaItems(items) {
+  if (!mediaList) return;
+  if (!items.length) {
+    mediaList.innerHTML = '<p class="media-status">掲載情報は準備中です。</p>';
+    return;
+  }
+  mediaList.replaceChildren(...items.map(item => {
+    const article = document.createElement('article');
+    article.className = 'media-item';
+    const meta = document.createElement('div');
+    if (item.date) {
+      const time = document.createElement('time');
+      time.textContent = item.date;
+      meta.appendChild(time);
+    }
+    if (item.source) {
+      const source = document.createElement('span');
+      source.className = 'media-source';
+      source.textContent = item.source;
+      meta.appendChild(source);
+    }
+    const title = document.createElement('h3');
+    if (item.url) {
+      const link = document.createElement('a');
+      link.href = item.url;
+      link.target = '_blank';
+      link.rel = 'noopener';
+      link.textContent = item.title || item.url;
+      title.appendChild(link);
+    } else title.textContent = item.title || item.source;
+    article.append(meta, title);
+    if (item.description) {
+      const description = document.createElement('p');
+      description.textContent = item.description;
+      article.appendChild(description);
+    }
+    return article;
+  }));
+}
+
+async function loadMediaItems() {
+  if (!mediaList) return;
+  try {
+    const response = await fetch(mediaSheetUrl);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const rows = parseCsv(await response.text());
+    renderMediaItems(normalizeMediaRows(rows));
+  } catch (_) {
+    mediaList.innerHTML = '<p class="media-status">掲載情報を読み込めませんでした。</p>';
+  }
+}
+
+loadMediaItems();
