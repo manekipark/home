@@ -202,9 +202,9 @@ function normalizeMediaRows(rows) {
     const row = {};
     headers.forEach((header, index) => { row[header] = values[index] || ''; });
     return {
-      date: pick(row, ['日付', '掲載日', '公開日', 'Date']),
-      source: pick(row, ['媒体', 'メディア', '掲載媒体', 'Media']),
-      title: pick(row, ['タイトル', '記事名', '見出し', 'Title']),
+      date: pick(row, ['日付', '掲載日', '公開日', 'Date', 'Date / 掲載日']),
+      source: pick(row, ['媒体', 'メディア', '掲載媒体', 'Media', 'Media / 媒体']),
+      title: pick(row, ['タイトル', '記事名', '見出し', '掲載内容', 'Topic / 掲載内容', 'Title', 'Topic']),
       url: pick(row, ['URL', 'リンク', 'Link']),
       description: pick(row, ['概要', '説明', '内容', 'Description'])
     };
