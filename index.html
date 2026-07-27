@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="まねき公園研究所の公式ウェブサイト。まちの余白から、歴史、いとなみ、いのちを考えるための研究所です。">
+  <meta name="description" content="まねき公園研究所の公式ウェブサイト。千年後に伝えるための、仕組みと場所づくりを考える研究所です。">
   <meta name="theme-color" content="#f3f3f0">
   <meta property="og:type" content="website">
   <meta property="og:title" content="まねき公園研究所">
-  <meta property="og:description" content="まちの余白から、歴史、いとなみ、いのちを考えるための研究所です。">
+  <meta property="og:description" content="千年後に伝えるための、仕組みと場所づくりを考える研究所です。">
   <meta property="og:image" content="assets/og-image.jpg">
   <meta property="og:locale" content="ja_JP">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="assets/favicon.png" type="image/png">
   <title>まねき公園研究所</title>
-  <link rel="stylesheet" href="styles.css?v=10">
+  <link rel="stylesheet" href="styles.css?v=11">
 </head>
 <body>
   <a class="skip-link" href="#main">本文へ移動</a>
@@ -34,34 +34,62 @@
       <p class="menu-note">静かに、強く、すごく。</p>
     </nav>
     <h1 class="hero-logo"><img src="assets/maneki-park-lab-logo.webp" alt="まねき公園研究所" width="500" height="375"></h1>
-    <p>— まちの余白から、歴史、いとなみ、いのちを考える —</p>
+    <p>— 千年後に伝えるための、仕組みと場所づくり —</p>
   </header>
 
   <main id="main">
-    <section class="slider" aria-roledescription="カルーセル" aria-label="注目の写真">
-      <div class="slider-viewport" tabindex="0">
-        <div class="slides">
-          <article class="slide" data-title="まちを歩き、記憶にふれる">
+    <section class="content-orbit" aria-labelledby="orbitTitle">
+      <div class="orbit-head">
+        <p class="eyebrow">CONTENTS</p>
+        <h2 id="orbitTitle">めぐりながら、入口を選ぶ</h2>
+      </div>
+      <div class="orbit-stage" data-card-wheel tabindex="0" aria-label="コンテンツカード">
+        <article class="orbit-card is-active">
+          <a href="#feature01">
             <img src="assets/slide-fieldwork.png" alt="子どもたちに地域の記録写真を示しながら説明するフィールドワークの様子" width="1448" height="1086">
-            <span>まちを歩き、記憶にふれる</span>
-          </article>
-          <article class="slide" data-title="失われた場所から考える">
+            <span>FEATURE 01</span>
+            <h3>「まねき公園」とは？</h3>
+            <p>場所の由来と、震災後に公園となった経緯をたどります。</p>
+          </a>
+        </article>
+        <article class="orbit-card">
+          <a href="#play">
+            <img src="assets/mario.png" alt="被災した建物の中に残る遊び場の記憶を感じさせる写真" width="1924" height="1081">
+            <span>PLAY</span>
+            <h3>遊び場の記憶</h3>
+            <p>在りし日の遊び場から、いまの伝承の形を考えます。</p>
+          </a>
+        </article>
+        <article class="orbit-card">
+          <a href="#feature02">
             <img src="assets/slide-tsunami-memory.jpg" alt="津波被害を受けた集落跡と残された建物やがれき" width="2736" height="3648">
-            <span>失われた場所から考える</span>
-          </article>
-          <article class="slide" data-title="余白としての公園を見つめる">
-            <img src="assets/slide-maneki-park.jpg" alt="青空の下に広がるまねき公園の入口と案内板" width="4032" height="3024">
-            <span>余白としての公園を見つめる</span>
-          </article>
-        </div>
+            <span>FEATURE 02</span>
+            <h3>震災を学ぶ</h3>
+            <p>被災の記憶、地域の語り、学びの場づくりをつなぎます。</p>
+          </a>
+        </article>
+        <article class="orbit-card">
+          <a href="media.html">
+            <img src="assets/image-11.jpg" alt="縦長の面が並ぶ抽象的なモノクローム作品" width="1600" height="900">
+            <span>MEDIA</span>
+            <h3>メディア掲載情報</h3>
+            <p>新聞、テレビ、ラジオ、ウェブ記事などの掲載情報を一覧で確認できます。</p>
+          </a>
+        </article>
+        <article class="orbit-card">
+          <a href="#video">
+            <img src="assets/image-04.jpg" alt="映像のサムネイル" width="1600" height="900">
+            <span>MOVIE</span>
+            <h3>動きで見る</h3>
+            <p>まねき公園研究所の視点を、短い映像で見ます。</p>
+          </a>
+        </article>
       </div>
-      <button class="slider-btn prev" type="button" aria-label="前の写真"><span aria-hidden="true">←</span></button>
-      <button class="slider-btn next" type="button" aria-label="次の写真"><span aria-hidden="true">→</span></button>
-      <div class="slider-meta" aria-live="polite">
-        <span class="slide-number">01 / 03</span>
-        <div class="slider-dots" aria-label="写真を選択"></div>
+      <div class="orbit-controls" aria-label="コンテンツカード操作">
+        <button class="orbit-btn orbit-prev" type="button" aria-label="前のカード"><span aria-hidden="true">←</span></button>
+        <span class="orbit-count" aria-live="polite">01 / 05</span>
+        <button class="orbit-btn orbit-next" type="button" aria-label="次のカード"><span aria-hidden="true">→</span></button>
       </div>
-      <button class="autoplay-toggle" type="button" aria-pressed="false">一時停止</button>
     </section>
 
     <div class="content-shell">
@@ -89,7 +117,7 @@
 
       <hr>
 
-      <figure class="wide-media media-frame"><img src="assets/mario.png" alt="被災した建物の中に残る遊び場の記憶を感じさせる写真" loading="lazy" width="1924" height="1081"><figcaption>在りし日の「遊び場」に思いを馳せる。</figcaption></figure>
+      <figure class="wide-media media-frame" id="play"><img src="assets/mario.png" alt="被災した建物の中に残る遊び場の記憶を感じさせる写真" loading="lazy" width="1924" height="1081"><figcaption>在りし日の「遊び場」に思いを馳せる。</figcaption></figure>
 
       <section class="two-columns text-columns" aria-label="デザインの特徴">
         <article><p class="eyebrow">PLAY</p><h3>東日本大震災によって公園になるもっと前から、この場所は私たちの遊び場でした。</h3></article>
@@ -118,22 +146,6 @@
 
       <hr>
 
-      <section class="map-block" aria-label="構成の考え方">
-        <figure class="map-visual media-frame"><img src="assets/image-12.jpg" alt="円形と暗い地面が構成された抽象作品" loading="lazy" width="1600" height="900"><figcaption>情報を地図のように組み立てる</figcaption></figure>
-        <div class="map-links">
-          <article><span>01</span><h3>入口をひとつに絞る</h3><p>最初に見る要素を明確にすると、迷わず次へ進めます。</p></article>
-          <article><span>02</span><h3>文章の長さに差をつける</h3><p>短い見出しと落ち着いた本文で、読み方にリズムをつくります。</p></article>
-          <article><span>03</span><h3>終わりに余韻を置く</h3><p>映像と暗いフッターで、ページ全体を静かに閉じます。</p></article>
-        </div>
-      </section>
-
-      <section class="statement">
-        <p class="eyebrow">EDITORIAL NOTE</p>
-        <blockquote>「すごい」は、派手さではなく、<br>見たあとに残る密度のこと。</blockquote>
-      </section>
-
-      <hr>
-
       <section class="video" id="video" aria-labelledby="videoHeading">
         <div class="section-head"><p class="eyebrow">MOVIE</p><h2 id="videoHeading">動きで見る、まねき公園研究所</h2></div>
         <button class="video-box" id="videoButton" type="button" aria-haspopup="dialog" aria-controls="modal">
@@ -143,12 +155,17 @@
           <b>00:08</b>
         </button>
       </section>
+
+      <section class="statement">
+        <p class="eyebrow">EDITORIAL NOTE</p>
+        <blockquote>「すごい」は、派手さではなく、<br>見たあとに残る密度のこと。</blockquote>
+      </section>
     </div>
   </main>
 
   <footer>
     <div class="footer-inner">
-      <div class="footer-brand"><img src="assets/footer-logo.png" alt="まねき公園研究所" width="487" height="376"><p>まちの余白から、歴史、いとなみ、いのちを考える。</p></div>
+      <div class="footer-brand"><img src="assets/footer-logo.png" alt="まねき公園研究所" width="487" height="376"><p>千年後に伝えるための、仕組みと場所づくり。</p></div>
       <div class="footer-links"><a href="#feature01">特集</a><a href="#gallery">ギャラリー</a><a href="media.html">メディア掲載情報</a><a href="#video">映像</a><a href="#top">ページ上部へ</a></div>
     </div>
     <p class="copyright">© 2026 MANEKI PARK LAB</p>

@@ -1,97 +1,52 @@
-const slider = document.querySelector('.slider');
-const viewport = document.querySelector('.slider-viewport');
-const track = document.querySelector('.slides');
-const realSlides = [...document.querySelectorAll('.slide')];
-const prevButton = document.querySelector('.prev');
-const nextButton = document.querySelector('.next');
-const dotsWrap = document.querySelector('.slider-dots');
-const number = document.querySelector('.slide-number');
-const autoplayButton = document.querySelector('.autoplay-toggle');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-const firstClone = realSlides[0].cloneNode(true);
-const lastClone = realSlides.at(-1).cloneNode(true);
-firstClone.setAttribute('aria-hidden', 'true');
-lastClone.setAttribute('aria-hidden', 'true');
-track.prepend(lastClone);
-track.append(firstClone);
-const allSlides = [...track.children];
-let index = 1;
-let timer = null;
-let pausedByUser = false;
-let interacting = false;
+const orbitStage = document.querySelector('[data-card-wheel]');
+const orbitCards = [...document.querySelectorAll('.orbit-card')];
+const orbitPrev = document.querySelector('.orbit-prev');
+const orbitNext = document.querySelector('.orbit-next');
+const orbitCount = document.querySelector('.orbit-count');
+let orbitIndex = 0;
 
-realSlides.forEach((_, i) => {
-  const dot = document.createElement('button');
-  dot.type = 'button';
-  dot.setAttribute('aria-label', `${i + 1}枚目の写真を表示`);
-  dot.addEventListener('click', () => goTo(i + 1));
-  dotsWrap.appendChild(dot);
-});
-const dots = [...dotsWrap.children];
-
-function stepSize() {
-  const gap = parseFloat(getComputedStyle(track).gap) || 0;
-  return allSlides[0].getBoundingClientRect().width + gap;
+function circularOffset(cardIndex, activeIndex, length) {
+  let offset = cardIndex - activeIndex;
+  const half = Math.floor(length / 2);
+  if (offset > half) offset -= length;
+  if (offset < -half) offset += length;
+  return offset;
 }
-function setPosition(animate = true) {
-  track.style.transition = animate && !reduceMotion.matches ? '' : 'none';
-  track.style.transform = `translateX(${-index * stepSize()}px)`;
-  const realIndex = (index - 1 + realSlides.length) % realSlides.length;
-  allSlides.forEach((slide, i) => slide.classList.toggle('active', i === index));
-  dots.forEach((dot, i) => {
-    const active = i === realIndex;
-    dot.classList.toggle('active', active);
-    dot.setAttribute('aria-current', active ? 'true' : 'false');
+
+function setOrbit(nextIndex) {
+  if (!orbitCards.length) return;
+  orbitIndex = (nextIndex + orbitCards.length) % orbitCards.length;
+  orbitCards.forEach((card, cardIndex) => {
+    const offset = circularOffset(cardIndex, orbitIndex, orbitCards.length);
+    const depth = Math.min(Math.abs(offset), 3);
+    card.style.setProperty('--offset', offset);
+    card.style.setProperty('--depth', depth);
+    card.style.setProperty('--layer', 10 - depth);
+    card.classList.toggle('is-active', cardIndex === orbitIndex);
+    card.setAttribute('aria-current', cardIndex === orbitIndex ? 'true' : 'false');
   });
-  number.textContent = `${String(realIndex + 1).padStart(2, '0')} / ${String(realSlides.length).padStart(2, '0')}`;
+  if (orbitCount) orbitCount.textContent = `${String(orbitIndex + 1).padStart(2, '0')} / ${String(orbitCards.length).padStart(2, '0')}`;
 }
-function goTo(nextIndex) {
-  index = nextIndex;
-  setPosition(true);
-  restartAutoplay();
-}
-function move(step) { goTo(index + step); }
-track.addEventListener('transitionend', () => {
-  if (index === 0) { index = realSlides.length; setPosition(false); }
-  if (index === realSlides.length + 1) { index = 1; setPosition(false); }
-});
-prevButton.addEventListener('click', () => move(-1));
-nextButton.addEventListener('click', () => move(1));
-viewport.addEventListener('keydown', e => {
-  if (e.key === 'ArrowLeft') { e.preventDefault(); move(-1); }
-  if (e.key === 'ArrowRight') { e.preventDefault(); move(1); }
-});
 
-let startX = 0;
-viewport.addEventListener('pointerdown', e => { startX = e.clientX; interacting = true; stopAutoplay(); });
-viewport.addEventListener('pointerup', e => {
-  const delta = e.clientX - startX;
-  interacting = false;
-  if (Math.abs(delta) > 45) move(delta > 0 ? -1 : 1); else restartAutoplay();
-});
-viewport.addEventListener('pointercancel', () => { interacting = false; restartAutoplay(); });
-slider.addEventListener('mouseenter', stopAutoplay);
-slider.addEventListener('mouseleave', restartAutoplay);
-slider.addEventListener('focusin', stopAutoplay);
-slider.addEventListener('focusout', restartAutoplay);
-document.addEventListener('visibilitychange', () => document.hidden ? stopAutoplay() : restartAutoplay());
+function moveOrbit(step) { setOrbit(orbitIndex + step); }
 
-function stopAutoplay() { clearInterval(timer); timer = null; }
-function restartAutoplay() {
-  stopAutoplay();
-  if (!pausedByUser && !interacting && !document.hidden && !reduceMotion.matches) timer = setInterval(() => move(1), 4500);
+if (orbitStage && orbitCards.length) {
+  orbitPrev?.addEventListener('click', () => moveOrbit(-1));
+  orbitNext?.addEventListener('click', () => moveOrbit(1));
+  orbitStage.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') { e.preventDefault(); moveOrbit(-1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); moveOrbit(1); }
+  });
+  orbitCards.forEach((card, cardIndex) => {
+    card.addEventListener('focusin', () => setOrbit(cardIndex));
+    card.addEventListener('pointerenter', () => {
+      if (window.matchMedia('(min-width: 761px)').matches) setOrbit(cardIndex);
+    });
+  });
+  setOrbit(0);
 }
-autoplayButton.addEventListener('click', () => {
-  pausedByUser = !pausedByUser;
-  autoplayButton.setAttribute('aria-pressed', String(pausedByUser));
-  autoplayButton.textContent = pausedByUser ? '再生する' : '一時停止';
-  restartAutoplay();
-});
-reduceMotion.addEventListener('change', restartAutoplay);
-window.addEventListener('resize', () => setPosition(false));
-setPosition(false);
-restartAutoplay();
 
 const menuToggle = document.getElementById('menuToggle');
 const siteMenu = document.getElementById('siteMenu');
