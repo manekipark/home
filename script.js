@@ -5,7 +5,9 @@ const orbitCards = [...document.querySelectorAll('.orbit-card')];
 const orbitPrev = document.querySelector('.orbit-prev');
 const orbitNext = document.querySelector('.orbit-next');
 const orbitCount = document.querySelector('.orbit-count');
+const orbitMobile = window.matchMedia('(max-width: 760px)');
 let orbitIndex = 0;
+let orbitScrollFrame = 0;
 
 function circularOffset(cardIndex, activeIndex, length) {
   let offset = cardIndex - activeIndex;
@@ -15,7 +17,14 @@ function circularOffset(cardIndex, activeIndex, length) {
   return offset;
 }
 
-function setOrbit(nextIndex) {
+function scrollOrbitCardIntoView(cardIndex, behavior = 'smooth') {
+  if (!orbitStage || !orbitMobile.matches) return;
+  const card = orbitCards[cardIndex];
+  const left = card.offsetLeft - (orbitStage.clientWidth - card.offsetWidth) / 2;
+  orbitStage.scrollTo({ left, behavior: reduceMotion.matches ? 'auto' : behavior });
+}
+
+function setOrbit(nextIndex, scroll = false) {
   if (!orbitCards.length) return;
   orbitIndex = (nextIndex + orbitCards.length) % orbitCards.length;
   orbitCards.forEach((card, cardIndex) => {
@@ -28,9 +37,10 @@ function setOrbit(nextIndex) {
     card.setAttribute('aria-current', cardIndex === orbitIndex ? 'true' : 'false');
   });
   if (orbitCount) orbitCount.textContent = `${String(orbitIndex + 1).padStart(2, '0')} / ${String(orbitCards.length).padStart(2, '0')}`;
+  if (scroll) scrollOrbitCardIntoView(orbitIndex);
 }
 
-function moveOrbit(step) { setOrbit(orbitIndex + step); }
+function moveOrbit(step) { setOrbit(orbitIndex + step, true); }
 
 if (orbitStage && orbitCards.length) {
   orbitPrev?.addEventListener('click', () => moveOrbit(-1));
@@ -40,10 +50,32 @@ if (orbitStage && orbitCards.length) {
     if (e.key === 'ArrowRight') { e.preventDefault(); moveOrbit(1); }
   });
   orbitCards.forEach((card, cardIndex) => {
-    card.addEventListener('focusin', () => setOrbit(cardIndex));
+    card.addEventListener('focusin', () => setOrbit(cardIndex, orbitMobile.matches));
     card.addEventListener('pointerenter', () => {
       if (window.matchMedia('(min-width: 761px)').matches) setOrbit(cardIndex);
     });
+  });
+  orbitStage.addEventListener('scroll', () => {
+    if (!orbitMobile.matches) return;
+    cancelAnimationFrame(orbitScrollFrame);
+    orbitScrollFrame = requestAnimationFrame(() => {
+      const stageCenter = orbitStage.scrollLeft + orbitStage.clientWidth / 2;
+      let closestIndex = orbitIndex;
+      let closestDistance = Infinity;
+      orbitCards.forEach((card, cardIndex) => {
+        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        const distance = Math.abs(cardCenter - stageCenter);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = cardIndex;
+        }
+      });
+      if (closestIndex !== orbitIndex) setOrbit(closestIndex);
+    });
+  }, { passive: true });
+  orbitMobile.addEventListener('change', event => {
+    if (event.matches) requestAnimationFrame(() => scrollOrbitCardIntoView(orbitIndex, 'auto'));
+    else orbitStage.scrollLeft = 0;
   });
   setOrbit(0);
 }
