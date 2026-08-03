@@ -8,6 +8,8 @@ const orbitCount = document.querySelector('.orbit-count');
 const orbitMobile = window.matchMedia('(max-width: 760px)');
 let orbitIndex = 0;
 let orbitScrollFrame = 0;
+let orbitScrollTarget = -1;
+let orbitScrollUnlockTimer = 0;
 
 function circularOffset(cardIndex, activeIndex, length) {
   let offset = cardIndex - activeIndex;
@@ -21,7 +23,34 @@ function scrollOrbitCardIntoView(cardIndex, behavior = 'smooth') {
   if (!orbitStage || !orbitMobile.matches) return;
   const card = orbitCards[cardIndex];
   const left = card.offsetLeft - (orbitStage.clientWidth - card.offsetWidth) / 2;
+  orbitScrollTarget = cardIndex;
+  clearTimeout(orbitScrollUnlockTimer);
   orbitStage.scrollTo({ left, behavior: reduceMotion.matches ? 'auto' : behavior });
+  orbitScrollUnlockTimer = window.setTimeout(() => {
+    orbitScrollTarget = -1;
+    syncOrbitFromScroll();
+  }, reduceMotion.matches || behavior === 'auto' ? 0 : 1000);
+}
+
+function syncOrbitFromScroll() {
+  if (!orbitStage || !orbitMobile.matches || orbitScrollTarget !== -1) return;
+  const stageCenter = orbitStage.scrollLeft + orbitStage.clientWidth / 2;
+  let closestIndex = orbitIndex;
+  let closestDistance = Infinity;
+  orbitCards.forEach((card, cardIndex) => {
+    const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+    const distance = Math.abs(cardCenter - stageCenter);
+    if (distance < closestDistance) {
+      closestDistance = distance;
+      closestIndex = cardIndex;
+    }
+  });
+  if (closestIndex !== orbitIndex) setOrbit(closestIndex);
+}
+
+function cancelOrbitScrollLock() {
+  clearTimeout(orbitScrollUnlockTimer);
+  orbitScrollTarget = -1;
 }
 
 function setOrbit(nextIndex, scroll = false) {
@@ -56,26 +85,24 @@ if (orbitStage && orbitCards.length) {
     });
   });
   orbitStage.addEventListener('scroll', () => {
-    if (!orbitMobile.matches) return;
+    if (!orbitMobile.matches || orbitScrollTarget !== -1) return;
     cancelAnimationFrame(orbitScrollFrame);
-    orbitScrollFrame = requestAnimationFrame(() => {
-      const stageCenter = orbitStage.scrollLeft + orbitStage.clientWidth / 2;
-      let closestIndex = orbitIndex;
-      let closestDistance = Infinity;
-      orbitCards.forEach((card, cardIndex) => {
-        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
-        const distance = Math.abs(cardCenter - stageCenter);
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          closestIndex = cardIndex;
-        }
-      });
-      if (closestIndex !== orbitIndex) setOrbit(closestIndex);
-    });
+    orbitScrollFrame = requestAnimationFrame(syncOrbitFromScroll);
   }, { passive: true });
+  orbitStage.addEventListener('scrollend', () => {
+    if (orbitScrollTarget === -1) return;
+    const card = orbitCards[orbitScrollTarget];
+    const targetLeft = card.offsetLeft - (orbitStage.clientWidth - card.offsetWidth) / 2;
+    if (Math.abs(orbitStage.scrollLeft - targetLeft) < 2) cancelOrbitScrollLock();
+  });
+  orbitStage.addEventListener('pointerdown', cancelOrbitScrollLock, { passive: true });
+  orbitStage.addEventListener('wheel', cancelOrbitScrollLock, { passive: true });
   orbitMobile.addEventListener('change', event => {
     if (event.matches) requestAnimationFrame(() => scrollOrbitCardIntoView(orbitIndex, 'auto'));
-    else orbitStage.scrollLeft = 0;
+    else {
+      cancelOrbitScrollLock();
+      orbitStage.scrollLeft = 0;
+    }
   });
   setOrbit(0);
 }
