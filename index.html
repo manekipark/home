@@ -13,7 +13,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="assets/favicon.png" type="image/png">
   <title>まねき公園研究所</title>
-  <link rel="stylesheet" href="styles.css?v=13">
+  <link rel="stylesheet" href="styles.css?v=14">
 </head>
 <body>
   <a class="skip-link" href="#main">本文へ移動</a>
@@ -34,56 +34,31 @@
       <p class="menu-note">静かに、強く、すごく。</p>
     </nav>
     <h1 class="hero-logo"><img src="assets/maneki-park-lab-logo.webp" alt="まねき公園研究所" width="500" height="375"></h1>
-    <p>— 千年後に伝えるための、仕組みと場所づくり —</p>
   </header>
 
   <main id="main">
     <section class="content-orbit" aria-label="コンテンツ一覧">
       <div class="orbit-stage" data-card-wheel tabindex="0" aria-label="コンテンツカード">
         <article class="orbit-card is-active">
-          <a href="#feature01">
-            <img src="assets/maneki-park-sketch.png" alt="まねき公園入口を描いたモノクロのスケッチ" width="1448" height="1086">
-            <span>FEATURE 01</span>
-            <h3>「まねき公園」とは？</h3>
-            <p>場所の由来と、震災後に公園となった経緯をたどります。</p>
+          <a class="orbit-card-panel" href="https://manekipark.github.io/xwp/">
+            <img src="assets/image-09.jpg" alt="四角形が重なるモノクローム作品" width="1600" height="900">
+            <span>PLAY 01</span>
+            <h3>クロスワード</h3>
+            <p>まねき公園と地域の記憶を、言葉をたどりながら解きます。</p>
           </a>
         </article>
         <article class="orbit-card">
-          <a href="#play">
-            <img src="assets/mario.png" alt="被災した建物の中に残る遊び場の記憶を感じさせる写真" width="1924" height="1081">
-            <span>PLAY</span>
-            <h3>遊び場の記憶</h3>
-            <p>在りし日の遊び場から、いまの伝承の形を考えます。</p>
-          </a>
-        </article>
-        <article class="orbit-card">
-          <a href="#feature02">
-            <img src="assets/slide-tsunami-memory.jpg" alt="津波被害を受けた集落跡と残された建物やがれき" width="2736" height="3648">
-            <span>FEATURE 02</span>
-            <h3>震災を学ぶ</h3>
-            <p>被災の記憶、地域の語り、学びの場づくりをつなぎます。</p>
-          </a>
-        </article>
-        <article class="orbit-card">
-          <a href="media.html">
-            <img src="assets/image-11.jpg" alt="縦長の面が並ぶ抽象的なモノクローム作品" width="1600" height="900">
-            <span>MEDIA</span>
-            <h3>メディア掲載情報</h3>
-            <p>新聞、テレビ、ラジオ、ウェブ記事などの掲載情報を一覧で確認できます。</p>
-          </a>
-        </article>
-        <article class="orbit-card">
-          <a href="#video">
-            <img src="assets/image-04.jpg" alt="映像のサムネイル" width="1600" height="900">
-            <span>MOVIE</span>
-            <h3>動きで見る</h3>
-            <p>まねき公園研究所の視点を、短い映像で見ます。</p>
-          </a>
+          <div class="orbit-card-panel is-disabled" aria-disabled="true">
+            <img src="assets/slide-maneki-park.jpg" alt="まねき公園の入口と園内の風景" width="1920" height="1440">
+            <span>PLAY 02</span>
+            <h3>南浜AR（準備中）</h3>
+            <p>公開に向けて準備を進めています。</p>
+          </div>
         </article>
       </div>
       <div class="orbit-controls" aria-label="コンテンツカード操作">
         <button class="orbit-btn orbit-prev" type="button" aria-label="前のカード"><span aria-hidden="true">←</span></button>
-        <span class="orbit-count" aria-live="polite">01 / 05</span>
+        <span class="orbit-count" aria-live="polite">01 / 02</span>
         <button class="orbit-btn orbit-next" type="button" aria-label="次のカード"><span aria-hidden="true">→</span></button>
       </div>
     </section>
@@ -113,15 +88,6 @@
 
       <hr>
 
-      <figure class="wide-media media-frame" id="play"><img src="assets/mario.png" alt="被災した建物の中に残る遊び場の記憶を感じさせる写真" loading="lazy" width="1924" height="1081"><figcaption>瓦礫のなかにマリオがいた！</figcaption></figure>
-
-      <section class="two-columns text-columns" aria-label="デザインの特徴">
-        <article><p class="eyebrow">CONTINUE</p><h3>これまでの営みが嘘だったのかと思うような現実味のない景色の中に、マリオのポスターが張られた私の部屋だけが、過去と現在を繋いでくれました。</h3></article>
-        <article><p class="eyebrow">RETRY</p><h3>この場所、この経験を基点に災害の教訓を未来に届けます。</h3></article>
-      </section>
-
-      <hr>
-
       <section class="feature split" id="feature02">
         <figure class="media-frame portrait"><img src="assets/image-08.jpg" alt="曲線と暗い面が組み合わさった抽象作品" loading="lazy" width="1600" height="900"></figure>
         <div class="copy">
@@ -133,23 +99,28 @@
 
       <hr>
 
+      <figure class="wide-media media-frame" id="play"><img src="assets/mario.png" alt="被災した建物の中に残るマリオのポスター" loading="lazy" width="1924" height="1081"><figcaption>あそび心を忘れない</figcaption></figure>
+
+      <section class="play-note" aria-label="あそび心を忘れない">
+        <p>瓦礫の中で見つかった、私の部屋には「マリオ」のポスターが張られたままでした。震災の教訓や後悔、悲しみだけでなく、この場所に暮らしていた子どもたちの楽しさや遊び心も忘れずに伝えていきます。</p>
+      </section>
+
+      <hr>
+
       <section class="card-grid three" id="gallery" aria-labelledby="galleryTitle">
         <h2 class="visually-hidden" id="galleryTitle">学びのトピック</h2>
-        <article><figure class="media-frame"><img src="assets/image-09.jpg" alt="四角形が重なるモノクローム作品" loading="lazy" width="1600" height="900"></figure><h3>エピソード</h3><p>まねき公園と周辺の場所に残る記憶を、出来事や人のいとなみからたどります。</p></article>
-        <article><figure class="media-frame"><img src="assets/slide-fieldwork.png" alt="子どもたちに地域の記録写真を示しながら説明するフィールドワークの様子" loading="lazy" width="1448" height="1086"></figure><h3>パークガイド・講演</h3><p>現地を歩くガイドや講演を通じて、震災の被害、復興、まちの変化を学びます。</p></article>
+        <article><figure class="media-frame"><img src="assets/image-09.jpg" alt="四角形が重なるモノクローム作品" loading="lazy" width="1600" height="900"></figure><h3>世界一小規模なパークガイド</h3><p>1,790㎡のまねき公園を歩きながら、震災の被害、復興、まちの変化を学びます。</p></article>
+        <article><figure class="media-frame"><img src="assets/slide-fieldwork.png" alt="子どもたちに地域の記録写真を示しながら説明するフィールドワークの様子" loading="lazy" width="1448" height="1086"></figure><h3>講演依頼・実績</h3><p>震災伝承や公園づくりについての講演依頼と、これまでの実績を紹介します。</p></article>
         <article><a class="topic-link" href="media.html"><figure class="media-frame"><img src="assets/image-11.jpg" alt="縦長の面が並ぶ抽象的なモノクローム作品" loading="lazy" width="1600" height="900"></figure><h3>メディア掲載情報</h3><p>新聞、テレビ、ラジオ、ウェブ記事などの掲載情報を一覧で確認できます。</p><span>一覧を見る</span></a></article>
       </section>
 
       <hr>
 
-      <section class="video" id="video" aria-labelledby="videoHeading">
-        <div class="section-head"><p class="eyebrow">MOVIE</p><h2 id="videoHeading">動きで見る、まねき公園研究所</h2></div>
-        <button class="video-box" id="videoButton" type="button" aria-haspopup="dialog" aria-controls="modal">
-          <img src="assets/image-04.jpg" alt="">
-          <span>すごい<br>動画</span>
-          <i aria-hidden="true">▶</i>
-          <b>00:08</b>
-        </button>
+      <section class="video" id="video" aria-label="動画">
+        <video class="embedded-video" controls preload="metadata" poster="assets/image-04.jpg">
+          <source src="assets/sugoi-film.mp4" type="video/mp4">
+          お使いのブラウザは動画再生に対応していません。
+        </video>
       </section>
 
       <section class="statement">
@@ -167,17 +138,6 @@
     <p class="copyright">© 2026 MANEKI PARK LAB</p>
   </footer>
 
-  <div class="modal" id="modal" aria-hidden="true" hidden>
-    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <div class="modal-head"><h2 id="modalTitle">すごい動画</h2><button class="modal-close" id="modalClose" type="button" aria-label="動画を閉じる">×</button></div>
-      <video id="featureVideo" controls preload="metadata" poster="assets/image-04.jpg">
-        <source src="assets/sugoi-film.mp4" type="video/mp4">
-        お使いのブラウザは動画再生に対応していません。
-      </video>
-      <p>モノクロームの図形が切り替わる、8秒間の短い映像です。</p>
-    </div>
-  </div>
-
-  <script src="script.js?v=4"></script>
+  <script src="script.js?v=5"></script>
 </body>
 </html>

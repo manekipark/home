@@ -136,41 +136,8 @@ siteMenu.addEventListener('keydown', e => {
   if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
 });
 
-const modal = document.getElementById('modal');
-const videoButton = document.getElementById('videoButton');
-const modalClose = document.getElementById('modalClose');
-const featureVideo = document.getElementById('featureVideo');
-let modalReturnFocus = null;
-function openModal() {
-  modalReturnFocus = document.activeElement;
-  modal.hidden = false;
-  requestAnimationFrame(() => modal.classList.add('open'));
-  modal.setAttribute('aria-hidden', 'false');
-  document.body.classList.add('menu-open');
-  modalClose.focus();
-}
-function closeModal() {
-  featureVideo.pause();
-  modal.classList.remove('open');
-  modal.setAttribute('aria-hidden', 'true');
-  document.body.classList.remove('menu-open');
-  setTimeout(() => { modal.hidden = true; modalReturnFocus?.focus(); }, reduceMotion.matches ? 0 : 200);
-}
-videoButton.addEventListener('click', openModal);
-modalClose.addEventListener('click', closeModal);
-modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-modal.addEventListener('keydown', e => {
-  if (e.key !== 'Tab') return;
-  const items = focusableWithin(modal);
-  const first = items[0], last = items.at(-1);
-  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-  if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-});
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    if (!modal.hidden) closeModal();
-    else if (siteMenu.classList.contains('open')) setMenu(false);
-  }
+  if (e.key === 'Escape' && siteMenu.classList.contains('open')) setMenu(false);
 });
 
 const mediaList = document.getElementById('mediaList');
