@@ -13,7 +13,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="assets/favicon.png" type="image/png">
   <title>まねき公園研究所</title>
-  <link rel="stylesheet" href="styles.css?v=14">
+  <link rel="stylesheet" href="styles.css?v=15">
 </head>
 <body>
   <a class="skip-link" href="#main">本文へ移動</a>
@@ -26,12 +26,13 @@
     <nav class="site-menu" id="siteMenu" aria-label="メインメニュー" aria-hidden="true">
       <p class="menu-label">CONTENTS</p>
       <a href="#top">トップ</a>
-      <a href="#feature01">特集 01</a>
-      <a href="#feature02">特集 02</a>
-      <a href="#gallery">ギャラリー</a>
+      <a href="lecture.html">講演依頼・実績</a>
       <a href="media.html">メディア掲載情報</a>
       <a href="#video">映像</a>
-      <p class="menu-note">静かに、強く、すごく。</p>
+      <div class="menu-social" aria-label="ソーシャルメディア">
+        <a class="social-link" href="https://www.instagram.com/_abejin/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><span class="social-icon instagram-icon" aria-hidden="true"></span></a>
+        <a class="social-link" href="https://www.facebook.com/a.jinpi" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook"><span class="social-icon facebook-icon" aria-hidden="true">f</span></a>
+      </div>
     </nav>
     <h1 class="hero-logo"><img src="assets/maneki-park-lab-logo.webp" alt="まねき公園研究所" width="500" height="375"></h1>
   </header>
@@ -100,7 +101,7 @@
       <section class="card-grid three" id="gallery" aria-labelledby="galleryTitle">
         <h2 class="visually-hidden" id="galleryTitle">学びのトピック</h2>
         <article><figure class="media-frame"><img src="assets/slide-fieldwork.png" alt="子どもたちに地域の記録写真を示しながら説明するパークガイドの様子" loading="lazy" width="1448" height="1086"></figure><h3>世界一小規模なパークガイド</h3><p>1,790㎡(東京ドーム0.04個ぶん)のまねき公園を歩きながら、東日本大震災被害、住民の思い、まちの変化を学びます。</p></article>
-        <article><figure class="media-frame"><img src="assets/image-09.jpg" alt="四角形が重なるモノクローム作品" loading="lazy" width="1600" height="900"></figure><h3>講演依頼・実績</h3><p>講演のご相談はこちらをご覧ください。これまでの講演実績もご覧いただけます。</p></article>
+        <article><a class="topic-link" href="lecture.html"><figure class="media-frame"><img src="assets/image-09.jpg" alt="四角形が重なるモノクローム作品" loading="lazy" width="1600" height="900"></figure><h3>講演依頼・実績</h3><p>講演のご相談はこちらをご覧ください。これまでの講演実績もご覧いただけます。</p><span>一覧を見る</span></a></article>
         <article><a class="topic-link" href="media.html"><figure class="media-frame"><img src="assets/image-11.jpg" alt="縦長の面が並ぶ抽象的なモノクローム作品" loading="lazy" width="1600" height="900"></figure><h3>メディア掲載</h3><p>新聞、テレビ、ラジオ、ウェブ記事などの掲載情報を一覧で確認できます。</p><span>一覧を見る</span></a></article>
       </section>
 
@@ -119,11 +120,18 @@
   <footer>
     <div class="footer-inner">
       <div class="footer-brand"><img src="assets/footer-logo.png" alt="まねき公園研究所" width="487" height="376"></div>
-      <div class="footer-links"><a href="#feature01">特集</a><a href="#gallery">ギャラリー</a><a href="media.html">メディア掲載情報</a><a href="#video">映像</a><a href="#top">ページ上部へ</a></div>
+      <div class="footer-nav">
+        <div class="footer-links"><a href="#top">トップ</a><a href="lecture.html">講演依頼・実績</a><a href="media.html">メディア掲載情報</a><a href="#video">映像</a></div>
+        <div class="footer-social" aria-label="ソーシャルメディア">
+          <a class="social-link" href="https://www.instagram.com/_abejin/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><span class="social-icon instagram-icon" aria-hidden="true"></span></a>
+          <a class="social-link" href="https://www.facebook.com/a.jinpi" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook"><span class="social-icon facebook-icon" aria-hidden="true">f</span></a>
+        </div>
+      </div>
     </div>
     <p class="copyright">© 2026 MANEKI PARK LAB</p>
   </footer>
 
-  <script src="script.js?v=5"></script>
+  <script src="navigation.js?v=1"></script>
+  <script src="script.js?v=6"></script>
 </body>
 </html>

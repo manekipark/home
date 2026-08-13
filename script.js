@@ -107,39 +107,6 @@ if (orbitStage && orbitCards.length) {
   setOrbit(0);
 }
 
-const menuToggle = document.getElementById('menuToggle');
-const siteMenu = document.getElementById('siteMenu');
-const menuScrim = document.getElementById('menuScrim');
-let menuReturnFocus = null;
-function focusableWithin(container) { return [...container.querySelectorAll('a,button,[tabindex]:not([tabindex="-1"])')]; }
-function setMenu(open) {
-  if (open) menuReturnFocus = document.activeElement;
-  menuToggle.classList.toggle('open', open);
-  siteMenu.classList.toggle('open', open);
-  menuScrim.hidden = !open;
-  requestAnimationFrame(() => menuScrim.classList.toggle('open', open));
-  menuToggle.setAttribute('aria-expanded', String(open));
-  menuToggle.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
-  siteMenu.setAttribute('aria-hidden', String(!open));
-  document.body.classList.toggle('menu-open', open);
-  if (open) focusableWithin(siteMenu)[0]?.focus();
-  else menuReturnFocus?.focus();
-}
-menuToggle.addEventListener('click', () => setMenu(!siteMenu.classList.contains('open')));
-menuScrim.addEventListener('click', () => setMenu(false));
-siteMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
-siteMenu.addEventListener('keydown', e => {
-  if (e.key !== 'Tab') return;
-  const items = focusableWithin(siteMenu);
-  const first = items[0], last = items.at(-1);
-  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-  if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-});
-
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && siteMenu.classList.contains('open')) setMenu(false);
-});
-
 const mediaList = document.getElementById('mediaList');
 const mediaSheetUrl = 'https://docs.google.com/spreadsheets/d/1VJgPLSTKU752g4j9_PXB-sji7XwLDwqwxiMGPQvQ9jk/gviz/tq?tqx=out:csv';
 
